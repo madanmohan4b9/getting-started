@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poc-deployment
+  namespace: ymohan3
+  labels:
+    app: poc
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: poc
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: poc
+    spec:
+      containers:
+      - image: ymohan3/getting-started:v1
+        imagePullPolicy: Always
+        name: poc
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
