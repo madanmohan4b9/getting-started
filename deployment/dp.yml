@@ -21,7 +21,7 @@ spec:
         app: poc
     spec:
       containers:
-      - image: ymohan3/getting-started:v1
+      - image: ymohan3/getting-started:v2
         imagePullPolicy: Always
         name: poc
         ports:
