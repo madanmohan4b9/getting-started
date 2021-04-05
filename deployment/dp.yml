@@ -6,7 +6,7 @@ metadata:
   labels:
     app: poc
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: poc
@@ -26,3 +26,10 @@ spec:
         name: poc
         ports:
         - containerPort: 3000
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "300m"
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
